@@ -110,7 +110,7 @@ sd_static_lib(learning ${SD_LIBS}/learning
 
 # ------------------------------------------------------------------ csnetworking (client/server networking)
 sd_static_lib(csnetworking ${SD_MODS}/csnetworking
-    csnetwork.cpp csserver.cpp csclient.cpp csrobotxml.cpp cspack.cpp csstats.cpp)
+    csnetwork.cpp csserver.cpp csclient.cpp csrobotxml.cpp cspack.cpp csstats.cpp csadhoc.cpp)
 
 # All static pieces that make up the core. They are linked with --whole-archive so
 # that every symbol is available to the dlopen-ed modules.

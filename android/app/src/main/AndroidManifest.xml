@@ -41,6 +41,9 @@
         android:extractNativeLibs="true"
         android:hasCode="true">
 
+        <!-- Lets simpleperf measure the release build over adb (no debugging). -->
+        <profileable android:shell="true" />
+
         <meta-data android:name="com.samsung.android.vr.application.mode" android:value="vr_only" />
         <meta-data android:name="com.oculus.supportedDevices" android:value="quest|quest2|quest3|questpro|cambria|eureka" />
 

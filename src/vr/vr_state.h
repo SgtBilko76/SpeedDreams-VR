@@ -30,6 +30,9 @@ void VrApplyEyePose(const float* eye, const float* center, const float* up,
 /* Like VrApplyEyePose but with NO positional offset (the eye stays at the origin):
  * only the per-eye head rotation is applied. Used for the skybox/background so it
  * sits at infinity and both eyes see identical sky. */
+/* Seat (camera) space -> current eye space, GL column-major 4x4. */
+void VrEyeFromSeatGL(float* m);
+
 void VrApplyEyeRotationOnly(const float* center, const float* up,
                             float* centerOut, float* upOut);
 
@@ -59,6 +62,9 @@ void VrRaceFrameEnd(void);
 
 /* Recenter the seated position/yaw on the next race frame. */
 void VrRequestRecenter(void);
+
+/* Called from TBXR when the runtime recentres (Meta button held). */
+void VrSystemRecentered(void);
 
 /* Eye buffer size in pixels. */
 void VrGetEyeSize(int* w, int* h);

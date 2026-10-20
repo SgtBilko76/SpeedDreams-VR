@@ -172,6 +172,16 @@ void VrRequestRecenter(void)
     VrInvalidateScreenPose();
 }
 
+/* The player held the Meta button: the runtime has recentred its spaces (the
+ * reference-space-change event, seen by TBXR). The seated pose here is kept
+ * relative to where the head was at the last recentre, so take a new one now,
+ * as every other VR app does on that button. */
+void VrSystemRecentered(void)
+{
+    ALOGI("VR recenter: requested by the system (Meta button held)");
+    VrRequestRecenter();
+}
+
 void VrGetEyeSize(int* w, int* h)
 {
     *w = (int)gAppState.Width;
@@ -279,6 +289,25 @@ void VrApplyEyePose(const float* eye, const float* center, const float* up,
         centerOut[i] = eyeOut[i] + fw;
         upOut[i] = uw;
     }
+}
+
+/* For things drawn in camera space after the scene (the rain): the matrix
+ * that takes a point given relative to the game's own camera - the seat,
+ * looking ahead - into the current eye's space. Without it they are glued to
+ * the head and turn with it. GL column-major; multiply it onto the modelview.
+ *   eye = R^T * (p - T)   (R, T: this eye's rotation and offset from the seat) */
+void VrEyeFromSeatGL(float* m)
+{
+    const float* R = sEyeRot[vr_curEye];
+    const float* T = sEyePos[vr_curEye];
+
+    for (int col = 0; col < 3; col++)
+        for (int row = 0; row < 3; row++)
+            m[col * 4 + row] = R[col * 3 + row];   /* (R^T)[row][col] */
+    m[3] = m[7] = m[11] = 0.0f;
+    for (int row = 0; row < 3; row++)
+        m[12 + row] = -(R[0 * 3 + row] * T[0] + R[1 * 3 + row] * T[1] + R[2 * 3 + row] * T[2]);
+    m[15] = 1.0f;
 }
 
 void VrApplyEyeRotationOnly(const float* center, const float* up,

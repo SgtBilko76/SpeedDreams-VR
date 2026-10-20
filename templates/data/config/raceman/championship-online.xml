@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE params SYSTEM "params.dtd">
+
+<params name="Online Championship" version="2.22">
+  <section name="Header">
+    <attstr name="name" val="Online Championship"/>
+    <attstr name="type" val="Championship"/>
+    <attstr name="subtype" val="Online"/>
+    <attstr name="description" val="Supercars Tournament"/>
+    <attnum name="priority" val="90"/>
+    <attstr name="menu image" val="data/img/splash-champ.jpg"/>
+    <attstr name="run image" val="data/img/splash-run-practice.jpg"/>
+    <attstr name="start image" val="data/img/splash-champstart.jpg"/>
+  </section>
+
+  <section name="Tracks">
+    <attnum name="maximum number" val="20"/>
+    <section name="1">
+      <attstr name="name" val="espie"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="2">
+      <attstr name="name" val="forza"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="3">
+      <attstr name="name" val="peters"/>
+      <attstr name="category" val="road"/>
+    </section>
+
+    <section name="4">
+      <attstr name="name" val="chemisay"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="5">
+      <attstr name="name" val="karwada"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="6">
+      <attstr name="name" val="alicante"/>
+      <attstr name="category" val="road"/>
+    </section>
+
+    <section name="7">
+      <attstr name="name" val="auriac"/>
+      <attstr name="category" val="road"/>
+    </section>
+
+    <section name="8">
+      <attstr name="name" val="street-1"/>
+      <attstr name="category" val="road"/>
+    </section>
+
+    <section name="9">
+      <attstr name="name" val="torino"/>
+      <attstr name="category" val="road"/>
+    </section>
+
+    <section name="10">
+      <attstr name="name" val="kurpfalzring"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+  </section>
+
+  <section name="Races">
+    <section name="1">
+      <attstr name="name" val="Qualifications"/>
+    </section>
+
+    <section name="2">
+      <attstr name="name" val="Race"/>
+    </section>
+
+  </section>
+
+  <section name="All Sessions">
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="random"/>
+    <attstr name="weather" val="config"/>
+    <attstr name="season" val="summer"/>
+  </section>
+
+  <section name="Qualifications">
+    <attnum name="laps" val="3"/>
+    <attstr name="type" val="qualifications"/>
+    <attstr name="time of day" val="morning"/>
+    <attstr name="starting order" val="drivers list"/>
+    <attstr name="display mode" val="results only"/>
+    <attstr name="restart" val="no"/>
+    <attstr name="display results" val="yes"/>
+    <attstr name="must complete" val="yes"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="1"/>
+      <attnum name="distance to start" val="100"/>
+      <attnum name="distance between columns" val="20"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+
+    <section name="Points">
+      <section name="1">
+        <attnum name="points" val="10"/>
+      </section>
+
+      <section name="2">
+        <attnum name="points" val="8"/>
+      </section>
+
+      <section name="3">
+        <attnum name="points" val="6"/>
+      </section>
+
+      <section name="4">
+        <attnum name="points" val="5"/>
+      </section>
+
+      <section name="5">
+        <attnum name="points" val="4"/>
+      </section>
+
+      <section name="6">
+        <attnum name="points" val="3"/>
+      </section>
+
+      <section name="7">
+        <attnum name="points" val="2"/>
+      </section>
+
+      <section name="8">
+        <attnum name="points" val="1"/>
+      </section>
+    </section>
+  </section>
+
+  <section name="Race">
+    <attnum name="distance" unit="km" val="50"/>
+    <attstr name="type" val="race"/>
+    <attstr name="time of day" val="afternoon"/>
+    <attnum name="cars per pit" val="2"/>
+    <attstr name="starting order" val="last race"/>
+    <attstr name="restart" val="no"/>
+    <attnum name="maximum drivers" val="25"/>
+    <attstr name="splash menu" val="yes"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="2"/>
+      <attnum name="distance to start" val="25"/>
+      <attnum name="distance between columns" val="30"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+
+    <section name="Points">
+      <section name="1">
+        <attnum name="points" val="12"/>
+      </section>
+
+      <section name="2">
+        <attnum name="points" val="10"/>
+      </section>
+
+      <section name="3">
+        <attnum name="points" val="8"/>
+      </section>
+
+      <section name="4">
+        <attnum name="points" val="6"/>
+      </section>
+
+      <section name="5">
+        <attnum name="points" val="4"/>
+      </section>
+
+      <section name="6">
+        <attnum name="points" val="3"/>
+      </section>
+
+      <section name="7">
+        <attnum name="points" val="2"/>
+      </section>
+
+      <section name="8">
+        <attnum name="points" val="1"/>
+      </section>
+    </section>
+  </section>
+
+    <section name="Drivers">
+      <attnum name="maximum number" val="25"/>
+      <attstr name="rejected types" val="networkhuman"/>
+      <attstr name="accepted categories" val="Supercars"/>
+      <section name="1">
+        <attstr name="driver name" val="Player"/>
+        <attstr name="module" val="human"/>
+      </section>
+    </section>
+
+  <section name="Configuration">
+    <attnum name="current configuration" val="2"/>
+    <section name="1">
+      <attstr name="type" val="drivers select"/>
+    </section>
+  </section>
+</params>

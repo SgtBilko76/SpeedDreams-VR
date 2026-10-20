@@ -9,7 +9,9 @@
  *   AXIS5/6 right thumbstick              (menu cursor only)
  *   BTN1 right grip (up shift), BTN2 left grip (down shift), BTN3 A (ABS),
  *   BTN5 left thumb click (reverse gear), BTN6 X (ASR)
- *   Y: short press = next camera (F2), hold 1 s = recenter the seated pose
+ *   Y: next camera (F2)
+ *   Holding the Meta button on the right controller recenters the seated pose
+ *   (the system does it, and the game follows: VrSystemRecentered)
  *
  * Menus: the right-hand aim ray drives the mouse cursor on the floating screen,
  * the right trigger is the left mouse button, A = Return, B / left menu = Escape,
@@ -292,16 +294,9 @@ void VrInputUpdate(void)
     uint32_t lNew = L.Buttons & ~sPrevLeftButtons;
     uint32_t lRel = ~L.Buttons & sPrevLeftButtons;
 
-    /* Y: short press = next camera (F2), long press (1 s) = recenter. */
-    static double yDownMs = 0.0;
-    static bool yRecentered = false;
-    if (lNew & xrButton_Y) { yDownMs = nowMs; yRecentered = false; }
-    if ((L.Buttons & xrButton_Y) && !yRecentered && nowMs - yDownMs > 1000.0) {
-        VrRequestRecenter();
-        TBXR_Vibrate(150, 1, 0.5f);
-        yRecentered = true;
-    }
-    if ((lRel & xrButton_Y) && !yRecentered) {
+    /* Y: next camera (F2). Recentring is the headset's own: hold the Meta
+     * button on the right controller (see VrSystemRecentered). */
+    if (lNew & xrButton_Y) {
         VrQueueKey(SDLK_F2, 1, 0, 0);
         VrQueueKey(SDLK_F2, 0, 0, 0);
     }

@@ -1,0 +1,40 @@
+# Speed Dreams VR ad-hoc relay, under systemd.
+#
+# Installed by install.sh; see README.md. Lists the races players host on their
+# own headsets, carries their traffic, and keeps the leaderboard in
+# /var/lib/sd-adhoc-relay/records.tsv.
+#
+# The other relay (primary <-> backup) is set in /etc/default/sd-adhoc-relay,
+# as RELAY_ARGS="-P <its IP>"; install.sh writes it.
+#
+# Open inbound UDP 28500 (listing), UDP 28510-28573 (one port per hosted race)
+# and TCP 28600 (leaderboard).
+
+[Unit]
+Description=Speed Dreams VR ad-hoc race relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sdrelay
+Group=sdrelay
+StateDirectory=sd-adhoc-relay
+EnvironmentFile=-/etc/default/sd-adhoc-relay
+ExecStart=/usr/local/bin/sd-adhoc-relay -p 28500 -b 28510 -n 64 -w 28600 -d /var/lib/sd-adhoc-relay $RELAY_ARGS
+Restart=always
+RestartSec=2
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

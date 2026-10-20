@@ -49,8 +49,10 @@
            track will not hold frame rate. -->
       <attnum name="sky dome distance" val="12000"/>
     	<attstr name="dynamic sky dome" val="disabled"/>
-      <!-- VR: rain particles are many small draws, the one thing to avoid here. -->
-      <attnum name="precipitation density" unit="%" val="0"/>
+      <!-- VR: rain is one batch of lines per eye (grrain.cpp), so it costs next
+           to nothing. It was off here by mistake, and races in the rain then
+           had dark skies and no rain at all. -->
+      <attnum name="precipitation density" unit="%" val="100"/>
     	<attnum name="cloudlayer" val="1"/>
     	<attstr name="background skydome" val="enabled"/>
 		<attnum name="visibility" val="10000"/>

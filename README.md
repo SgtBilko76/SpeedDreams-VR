@@ -54,9 +54,11 @@ Controls
     Right grip           shift up          Left grip         shift down
     A                    ABS / confirm     X                 ASR
     Right stick click    rear-view mirror
-    Y                    next camera; hold 1 second to recentre the menu panel
+    Y                    next camera
+    Meta button (right)  hold to recentre the view and the menu panel
 
-If the menu panel is not in front of you, hold Y for a second - it is anchored
+If the view or the menu panel is not in front of you, hold the Meta button on
+the right controller (Home button on Pico), as in other VR apps. The panel is anchored
 to the room, not to your head, so it stays where it was when you last moved.
 
 Pico controllers carry the same buttons in the same places, so the table above

@@ -58,6 +58,12 @@ PFNEGLGETSYNCATTRIBKHRPROC		eglGetSyncAttribKHR;
 int NUM_MULTI_SAMPLES	= 1;
 int REFRESH	            = 0;
 float SS_MULTIPLIER    = 0.75f;
+
+/* Fixed foveated rendering (Meta XR_FB_foveation): 0 off, 1 low, 2 medium,
+ * 3 high. The edges of each eye image - which the lenses blur anyway - are
+ * rendered at lower density, the centre at full. Set from vr.cfg. */
+int TBXR_FoveationLevel = 2;
+static bool sFoveationAvailable = false;
 bool TBXR_HasCylinderLayer = false;
 
 GLboolean stageSupported = GL_FALSE;
@@ -557,8 +563,60 @@ static bool ovrFramebuffer_Create(
     frameBuffer->ColorSwapChain.Width = swapChainCreateInfo.width;
     frameBuffer->ColorSwapChain.Height = swapChainCreateInfo.height;
 
+    const bool foveate = sFoveationAvailable && TBXR_FoveationLevel > 0;
+    XrSwapchainCreateInfoFoveationFB foveationCreateInfo;
+    memset(&foveationCreateInfo, 0, sizeof(foveationCreateInfo));
+    foveationCreateInfo.type = XR_TYPE_SWAPCHAIN_CREATE_INFO_FOVEATION_FB;
+    if (foveate)
+        swapChainCreateInfo.next = &foveationCreateInfo;
+
     // Create the swapchain.
     OXR(xrCreateSwapchain(session, &swapChainCreateInfo, &frameBuffer->ColorSwapChain.Handle));
+
+    if (foveate) {
+        PFN_xrCreateFoveationProfileFB pfnCreateProfile = NULL;
+        PFN_xrDestroyFoveationProfileFB pfnDestroyProfile = NULL;
+        PFN_xrUpdateSwapchainFB pfnUpdateSwapchain = NULL;
+        xrGetInstanceProcAddr(gAppState.Instance, "xrCreateFoveationProfileFB",
+                (PFN_xrVoidFunction*)&pfnCreateProfile);
+        xrGetInstanceProcAddr(gAppState.Instance, "xrDestroyFoveationProfileFB",
+                (PFN_xrVoidFunction*)&pfnDestroyProfile);
+        xrGetInstanceProcAddr(gAppState.Instance, "xrUpdateSwapchainFB",
+                (PFN_xrVoidFunction*)&pfnUpdateSwapchain);
+
+        if (pfnCreateProfile && pfnDestroyProfile && pfnUpdateSwapchain) {
+            XrFoveationLevelProfileCreateInfoFB levelInfo;
+            memset(&levelInfo, 0, sizeof(levelInfo));
+            levelInfo.type = XR_TYPE_FOVEATION_LEVEL_PROFILE_CREATE_INFO_FB;
+            levelInfo.level = TBXR_FoveationLevel >= 3 ? XR_FOVEATION_LEVEL_HIGH_FB :
+                              TBXR_FoveationLevel == 2 ? XR_FOVEATION_LEVEL_MEDIUM_FB :
+                                                         XR_FOVEATION_LEVEL_LOW_FB;
+            levelInfo.verticalOffset = 0.0f;
+            levelInfo.dynamic = XR_FOVEATION_DYNAMIC_DISABLED_FB;
+
+            XrFoveationProfileCreateInfoFB profileInfo;
+            memset(&profileInfo, 0, sizeof(profileInfo));
+            profileInfo.type = XR_TYPE_FOVEATION_PROFILE_CREATE_INFO_FB;
+            profileInfo.next = &levelInfo;
+
+            XrFoveationProfileFB profile = XR_NULL_HANDLE;
+            if (pfnCreateProfile(session, &profileInfo, &profile) == XR_SUCCESS) {
+                XrSwapchainStateFoveationFB state;
+                memset(&state, 0, sizeof(state));
+                state.type = XR_TYPE_SWAPCHAIN_STATE_FOVEATION_FB;
+                state.profile = profile;
+                XrResult r = pfnUpdateSwapchain(frameBuffer->ColorSwapChain.Handle,
+                        (const XrSwapchainStateBaseHeaderFB*)&state);
+                ALOGE("Foveated rendering: level %d %s", TBXR_FoveationLevel,
+                      r == XR_SUCCESS ? "on" : "FAILED");
+                pfnDestroyProfile(profile);
+            } else {
+                ALOGE("Foveated rendering: could not create the profile");
+            }
+        }
+    } else {
+        ALOGE("Foveated rendering: off (%s)", sFoveationAvailable ? "vr.cfg" : "not supported");
+    }
     // Get the number of swapchain images.
     OXR(xrEnumerateSwapchainImages(
             frameBuffer->ColorSwapChain.Handle, 0, &frameBuffer->TextureSwapChainLength, NULL));
@@ -1815,6 +1873,20 @@ void TBXR_InitialiseOpenXR()
 				XR_FB_COLOR_SPACE_EXTENSION_NAME,
 				enabledExtensions,
 				&enabledExtensionCount);
+
+		/* Foveation needs all three; use it only if the runtime has them. */
+		{
+			uint32_t before = enabledExtensionCount;
+			TBXR_AddExtensionIfAvailable(availableExtensions, availableExtensionCount,
+					XR_FB_SWAPCHAIN_UPDATE_STATE_EXTENSION_NAME, enabledExtensions, &enabledExtensionCount);
+			TBXR_AddExtensionIfAvailable(availableExtensions, availableExtensionCount,
+					XR_FB_FOVEATION_EXTENSION_NAME, enabledExtensions, &enabledExtensionCount);
+			TBXR_AddExtensionIfAvailable(availableExtensions, availableExtensionCount,
+					XR_FB_FOVEATION_CONFIGURATION_EXTENSION_NAME, enabledExtensions, &enabledExtensionCount);
+			sFoveationAvailable = (enabledExtensionCount - before == 3);
+			if (!sFoveationAvailable)
+				enabledExtensionCount = before;
+		}
 	}
 
 	instanceCreateInfo.enabledExtensionCount = enabledExtensionCount;
@@ -1890,6 +1962,8 @@ void TBXR_InitialiseOpenXR()
 	TBXR_InitialiseResolution();
 }
 
+void VrSystemRecentered(void);   /* vr_stereo.cpp */
+
 void TBXR_Recenter() {
 
 	// Calculate recenter reference
@@ -1955,6 +2029,7 @@ void TBXR_WaitForSessionActive()
 		TBXR_ProcessMessageQueue();
 		if (ovrApp_HandleXrEvents(&gAppState)) {
 			TBXR_Recenter();
+			VrSystemRecentered();
 		}
 	}
 }
@@ -2002,6 +2077,7 @@ void TBXR_FrameSetup()
         if (ovrApp_HandleXrEvents(&gAppState))
         {
 			TBXR_Recenter();
+			VrSystemRecentered();
         }
 
         if (gAppState.SessionActive == GL_FALSE)

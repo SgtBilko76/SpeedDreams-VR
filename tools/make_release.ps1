@@ -173,9 +173,11 @@ Controls
     Right grip           shift up          Left grip         shift down
     A                    ABS / confirm     X                 ASR
     Right stick click    rear-view mirror
-    Y                    next camera; hold 1 second to recentre the menu panel
+    Y                    next camera
+    Meta button (right)  hold to recentre the view and the menu panel
 
-If the menu panel is not in front of you, hold Y for a second - it is anchored
+If the view or the menu panel is not in front of you, hold the Meta button on
+the right controller (Home button on Pico), as in other VR apps. The panel is anchored
 to the room, not to your head, so it stays where it was when you last moved.
 
 Pico controllers carry the same buttons in the same places, so the table above
@@ -194,6 +196,27 @@ alone once it is there.
 Everything else is in the game's own Options menu. If a track will not hold
 frame rate, turn the sky dome off first - with it on, nothing is distance
 culled and the whole track is drawn every frame, twice.
+
+
+Online races
+------------
+
+There is no fixed server to race on: anyone can host, and anyone can join.
+
+    Host   Race select -> Online Race, pick "Host a race" in the list next to
+           it, choose the track, the race settings and the drivers (yourself
+           and any robots), then wait in the lobby. The line at the top says
+           when the race is listed online; start it when people are in.
+    Join   Race select -> Online Race, pick "Join a race". The open races are
+           listed; pick one to go to its lobby, tick Ready.
+
+Robots you add when hosting race with everyone; each player who joins adds a
+car. The best lap of each player goes to the online leaderboard (main menu ->
+Leaderboard).
+
+Headsets cannot reach each other directly from behind home routers, so a
+relay server in the middle lists the races and passes the traffic along. If
+the main relay is down, the game uses the backup on its own.
 
 
 Known limits

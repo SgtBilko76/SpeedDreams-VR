@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    file        : netclient.xml  (derived from networkrace.xml)
+    created     : 2009
+    copyright   : (C) 2009 by Brian Gavin
+    web         : www.speed-dreams.org
+-->
+
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+
+<!DOCTYPE params SYSTEM "params.dtd">
+
+
+<params name="Online Client" version="2.1">
+  <section name="Header">
+    <attstr name="name" val="Online Client"/>
+    <attstr name="type" val="Network"/>
+    <attstr name="description" val="Join an Online Race"/>
+    <attstr name="subtype" val="Client"/>
+    <attnum name="priority" val="22"/>
+    <attstr name="menu image" val="data/img/splash-networkrace.jpg"/>
+  </section>
+
+  <section name="Tracks">
+    <attnum name="maximum number" val="1"/>
+    <section name="1">
+      <attstr name="name" val="espie"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+  </section>
+
+  <section name="Races">
+    <section name="1">
+      <attstr name="name" val="Online Race"/>
+    </section>
+
+  </section>
+
+  <section name="Online Race">
+    <attnum name="laps" val="10"/>
+    <attstr name="type" val="race"/>
+    <attstr name="starting order" val="drivers list"/>
+    <attstr name="restart" val="yes"/>
+    <attstr name="rain" val="none"/>
+    <attstr name="clouds" val="scarce clouds"/>
+    <attstr name="time of day" val="afternoon"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="2"/>
+      <attnum name="distance to start" val="25"/>
+      <attnum name="distance between columns" val="20"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+
+  </section>
+
+  <section name="Drivers">
+    <attnum name="maximum number" val="1"/>
+    <attstr name="rejected types" val="networkhuman"/>
+    <section name="1">
+      <attnum name="idx" val="2"/>
+      <attstr name="module" val="human"/>
+      <attnum name="extended" val="1"/>
+      <attnum name="skin targets" val="1"/>
+    </section>
+
+  </section>
+
+  <section name="Configuration">
+    <attnum name="current configuration" val="1"/>
+    <section name="1">
+      <attstr name="type" val="drivers select"/>
+    </section>
+    <!-- Speed Dreams VR: no "client config" (server address) step. Online
+         races are found through the relays (networking.xml, "Ad-hoc Relays"),
+         so there is no address to type in. -->
+
+  </section>
+
+  <section name="Driver Info">
+    <section name="human">
+      <section name="1">
+        <section name="1">
+          <attstr name="car name" val="sc-murasama-nsx"/>
+        </section>
+
+        <section name="2">
+          <attstr name="car name" val="36gp-milano-tipop3"/>
+        </section>
+
+      </section>
+
+    </section>
+
+  </section>
+
+</params>

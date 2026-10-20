@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    file        : championship-ls-gt1.xml
+-->
+
+<!--    This program is free software; you can redistribute it and/or modify  -->
+<!--    it under the terms of the GNU General Public License as published by  -->
+<!--    the Free Software Foundation; either version 2 of the License, or     -->
+<!--    (at your option) any later version.                                   -->
+
+<!DOCTYPE params SYSTEM "params.dtd">
+
+<params name="LS-GT1 Race" version="2.1">
+
+  <section name="Header">
+    <attstr name="name" val="LS-GT1 Championship"/>
+    <attstr name="type" val="Championship"/>
+    <attstr name="subtype" val="LS-GT1"/>
+    <attstr name="description" val="LS-GT1 Championship season"/>
+    <attnum name="priority" val="56"/>
+    <attstr name="menu image" val="data/img/splash-champ.jpg"/>
+    <attstr name="run image" val="data/img/splash-run-practice.jpg"/>
+    <attstr name="start image" val="data/img/splash-champstart.jpg"/>
+  </section>
+
+  <section name="Tracks">
+    <attnum name="maximum number" val="16"/>
+    <section name="1">
+      <attstr name="name" val="karwada"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="2">
+      <attstr name="name" val="espie"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="3">
+      <attstr name="name" val="forza"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="4">
+      <attstr name="name" val="chemisay"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="5">
+      <attstr name="name" val="goldstone-sand"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="6">
+      <attstr name="name" val="corkscrew"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="7">
+      <attstr name="name" val="salty"/>
+      <attstr name="category" val="road"/>
+    </section>
+
+    <section name="8">
+      <attstr name="name" val="brondehach"/>
+      <attstr name="category" val="circuit"/>
+    </section>
+
+    <section name="9">
+      <attstr name="name" val="charmey"/>
+      <attstr name="category" val="road"/>
+    </section>
+
+    <section name="10">
+      <attstr name="name" val="allondaz"/>
+      <attstr name="category" val="road"/>
+    </section>
+
+  </section>
+
+  <section name="Races">
+    <section name="1">
+      <attstr name="name" val="Free Practice"/>
+    </section>
+
+    <section name="2">
+      <attstr name="name" val="Q1"/>
+    </section>
+
+    <section name="3">
+      <attstr name="name" val="Q2"/>
+    </section>
+
+    <section name="4">
+      <attstr name="name" val="Q3"/>
+    </section>
+
+    <section name="5">
+      <attstr name="name" val="Qualifying Race"/>
+    </section>
+
+    <section name="6">
+      <attstr name="name" val="Warm-up"/>
+    </section>
+
+    <section name="7">
+      <attstr name="name" val="Championship Race"/>
+    </section>
+  </section>
+
+  <!-- A fictive race (= session) where to put default parameter values
+       which are common to all the normal races (= sessions)  -->
+  <section name="All Sessions">
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="scarce clouds"/>
+    <attstr name="weather" val="config"/>
+  </section>
+
+  <section name="Free Practice">
+    <attnum name="sessiontime" unit="s" val="1200"/>
+    <attnum name="laps" val="0"/>
+    <attnum name="distance" unit="km" val="25"/>
+    <attstr name="type" val="practice"/>
+    <attstr name="starting order" val="drivers list"/>
+    <attstr name="display mode" val="results only"/>
+    <attstr name="restart" val="no"/>
+    <attstr name="display results" val="yes"/>
+    <attstr name="must complete" val="no"/>
+    <attstr name="time of day" val="dawn"/>
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="random"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="1"/>
+      <attnum name="distance to start" val="100"/>
+      <attnum name="distance between columns" val="100"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+  </section>
+
+  <section name="Q1">
+    <attnum name="sessiontime" unit="s" val="1200"/>
+    <attnum name="laps" val="0"/>
+    <attnum name="distance" unit="km" val="20"/>
+    <attstr name="type" val="qualifications"/>
+    <attstr name="starting order" val="drivers list"/>
+    <attstr name="display mode" val="results only"/>
+    <attstr name="restart" val="no"/>
+    <attstr name="display results" val="yes"/>
+    <attstr name="must complete" val="no"/>
+    <attstr name="time of day" val="morning"/>
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="random"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="1"/>
+      <attnum name="distance to start" val="100"/>
+      <attnum name="distance between columns" val="100"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+  </section>
+
+  <section name="Q2">
+    <attnum name="sessiontime" unit="s" val="900"/>
+    <attnum name="laps" val="0"/>
+    <attnum name="distance" unit="km" val="15"/>
+    <attstr name="type" val="qualifications"/>
+    <attstr name="starting order" val="Q1[1:16]"/>
+    <attstr name="display mode" val="results only"/>
+    <attstr name="restart" val="no"/>
+    <attnum name="maximum drivers" val="16"/>
+    <attstr name="display results" val="yes"/>
+    <attstr name="must complete" val="no"/>
+    <attstr name="time of day" val="morning"/>
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="scarce clouds"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="1"/>
+      <attnum name="distance to start" val="100"/>
+      <attnum name="distance between columns" val="100"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+  </section>
+
+  <section name="Q3">
+    <attnum name="sessiontime" unit="s" val="600"/>
+    <attnum name="laps" val="0"/>
+    <attnum name="distance" unit="km" val="10"/>
+    <attstr name="type" val="qualifications"/>
+    <attstr name="starting order" val="Q2[1:8]"/>
+    <attstr name="display mode" val="results only"/>
+    <attstr name="restart" val="no"/>
+    <attnum name="maximum drivers" val="8"/>
+    <attstr name="display results" val="yes"/>
+    <attstr name="must complete" val="no"/>
+    <attstr name="time of day" val="noon"/>
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="random"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="1"/>
+      <attnum name="distance to start" val="100"/>
+      <attnum name="distance between columns" val="100"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+  </section>
+
+  <section name="Qualifying Race">
+    <attnum name="sessiontime" unit="s" val="1200"/>
+    <attnum name="laps" val="0"/>
+    <attnum name="distance" unit="km" val="50"/>
+    <attstr name="type" val="race"/>
+    <attstr name="starting order" val="Q3[1:8]Q2[9:16]Q1[17:30]"/>
+    <attstr name="restart" val="no"/>
+    <attnum name="maximum drivers" val="30"/>
+    <attstr name="splash menu" val="yes"/>
+    <attstr name="time of day" val="afternoon"/>
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="scarce clouds"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="2"/>
+      <attnum name="distance to start" val="1"/>
+      <attnum name="distance between columns" val="16"/>
+      <attnum name="offset within a column" val="8"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+
+    <section name="Points">
+      <section name="1">
+        <attnum name="points" val="8"/>
+      </section>
+
+      <section name="2">
+        <attnum name="points" val="6"/>
+      </section>
+
+      <section name="3">
+        <attnum name="points" val="4"/>
+      </section>
+
+      <section name="4">
+        <attnum name="points" val="3"/>
+      </section>
+
+      <section name="5">
+        <attnum name="points" val="2"/>
+      </section>
+
+      <section name="6">
+        <attnum name="points" val="1"/>
+      </section>
+    </section>
+
+  </section>
+
+  <section name="Warm-up">
+    <attnum name="sessiontime" unit="s" val="600"/>
+    <attnum name="laps" val="0"/>
+    <attnum name="distance" unit="km" val="10"/>
+    <attstr name="type" val="practice"/>
+    <attstr name="starting order" val="Qualifying Race"/>
+    <attstr name="display mode" val="results only"/>
+    <attstr name="restart" val="no"/>
+    <attstr name="display results" val="yes"/>
+    <attstr name="must complete" val="no"/>
+    <attstr name="time of day" val="morning"/>
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="random"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="1"/>
+      <attnum name="distance to start" val="100"/>
+      <attnum name="distance between columns" val="100"/>
+      <attnum name="offset within a column" val="10"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+  </section>
+
+  <section name="Championship Race">
+    <attnum name="sessiontime" unit="s" val="1200"/>
+    <attnum name="laps" val="0"/>
+    <attnum name="distance" unit="km" val="50"/>
+    <attstr name="type" val="race"/>
+    <attstr name="starting order" val="Qualifying Race"/>
+    <attstr name="restart" val="no"/>
+    <attnum name="maximum drivers" val="30"/>
+    <attstr name="splash menu" val="yes"/>
+    <attstr name="time of day" val="afternoon"/>
+    <attstr name="rain" val="random"/>
+    <attstr name="clouds" val="random"/>
+    <section name="Starting Grid">
+      <attnum name="rows" val="2"/>
+      <attnum name="distance to start" val="1"/>
+      <attnum name="distance between columns" val="16"/>
+      <attnum name="offset within a column" val="8"/>
+      <attnum name="initial speed" val="0"/>
+      <attnum name="initial height" val="0.2"/>
+    </section>
+
+    <section name="Points">
+      <section name="1">
+        <attnum name="points" val="25"/>
+      </section>
+
+      <section name="2">
+        <attnum name="points" val="18"/>
+      </section>
+
+      <section name="3">
+        <attnum name="points" val="15"/>
+      </section>
+
+      <section name="4">
+        <attnum name="points" val="12"/>
+      </section>
+
+      <section name="5">
+        <attnum name="points" val="10"/>
+      </section>
+
+      <section name="6">
+        <attnum name="points" val="8"/>
+      </section>
+
+      <section name="7">
+        <attnum name="points" val="6"/>
+      </section>
+
+      <section name="8">
+        <attnum name="points" val="4"/>
+      </section>
+
+      <section name="9">
+        <attnum name="points" val="2"/>
+      </section>
+
+      <section name="10">
+        <attnum name="points" val="1"/>
+      </section>
+    </section>
+
+  </section>
+
+  <section name="Drivers">
+
+    <attnum name="maximum number" val="30"/>
+    <attstr name="rejected types" val="networkhuman"/>
+    <attstr name="accepted categories" val="LS-GT1"/>
+
+    <section name="1">
+      <attstr name="driver name" val="Player"/>
+      <attstr name="module" val="human"/>
+    </section>
+
+  </section>
+
+  <section name="Configuration">
+    <attnum name="current configuration" val="3"/>
+    <section name="1">
+      <attstr name="type" val="drivers select"/>
+    </section>
+
+    <section name="2">
+      <attstr name="type" val="race config"/>
+      <attstr name="race" val="Free Practice"/>
+      <section name="Options">
+        <section name="1">
+          <attstr name="type" val="race length"/>
+        </section>
+        <section name="2">
+          <attstr name="type" val="cloud cover"/>
+        </section>
+        <section name="3">
+          <attstr name="type" val="rain fall"/>
+        </section>
+      </section>
+    </section>
+
+    <section name="3">
+      <attstr name="type" val="race config"/>
+      <attstr name="race" val="Q1"/>
+      <section name="Options">
+        <section name="1">
+          <attstr name="type" val="race length"/>
+        </section>
+        <section name="2">
+          <attstr name="type" val="cloud cover"/>
+        </section>
+        <section name="3">
+          <attstr name="type" val="rain fall"/>
+        </section>
+      </section>
+    </section>
+
+    <section name="4">
+      <attstr name="type" val="race config"/>
+      <attstr name="race" val="Q2"/>
+      <section name="Options">
+        <section name="1">
+          <attstr name="type" val="race length"/>
+        </section>
+        <section name="2">
+          <attstr name="type" val="cloud cover"/>
+        </section>
+        <section name="3">
+          <attstr name="type" val="rain fall"/>
+        </section>
+      </section>
+    </section>
+
+    <section name="5">
+      <attstr name="type" val="race config"/>
+      <attstr name="race" val="Q3"/>
+      <section name="Options">
+        <section name="1">
+          <attstr name="type" val="race length"/>
+        </section>
+        <section name="2">
+          <attstr name="type" val="cloud cover"/>
+        </section>
+        <section name="3">
+          <attstr name="type" val="rain fall"/>
+        </section>
+      </section>
+    </section>
+
+    <section name="6">
+      <attstr name="type" val="race config"/>
+      <attstr name="race" val="Qualifying Race"/>
+      <section name="Options">
+        <section name="1">
+          <attstr name="type" val="race length"/>
+        </section>
+        <section name="2">
+          <attstr name="type" val="cloud cover"/>
+        </section>
+        <section name="3">
+          <attstr name="type" val="rain fall"/>
+        </section>
+      </section>
+    </section>
+
+    <section name="7">
+      <attstr name="type" val="race config"/>
+      <attstr name="race" val="Warm-up"/>
+      <section name="Options">
+        <section name="1">
+          <attstr name="type" val="race length"/>
+        </section>
+        <section name="2">
+          <attstr name="type" val="cloud cover"/>
+        </section>
+        <section name="3">
+          <attstr name="type" val="rain fall"/>
+        </section>
+      </section>
+    </section>
+
+    <section name="8">
+      <attstr name="type" val="race config"/>
+      <attstr name="race" val="Championship Race"/>
+      <section name="Options">
+        <section name="1">
+          <attstr name="type" val="race length"/>
+        </section>
+        <section name="2">
+          <attstr name="type" val="cloud cover"/>
+        </section>
+        <section name="3">
+          <attstr name="type" val="rain fall"/>
+        </section>
+      </section>
+    </section>
+
+  </section>
+
+</params>

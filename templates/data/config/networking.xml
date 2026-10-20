@@ -28,4 +28,14 @@
       <attstr name="ip4" val="217.154.211.69"/>
        <attnum name="port" val="28500"/>
     </section>
+
+    <!-- VR: ad-hoc races. Players host races on their own headsets; these
+         relays list the open races and carry the traffic to and from them
+         (tools/server/adhoc). The backup is used whenever the primary does
+         not answer. -->
+    <section name="Ad-hoc Relays">
+      <attstr name="primary" val="217.154.211.69"/>
+      <attstr name="backup" val="85.215.158.219"/>
+      <attnum name="port" val="28500"/>
+    </section>
 </params>

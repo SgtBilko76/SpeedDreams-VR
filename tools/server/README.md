@@ -1,4 +1,10 @@
-# Dedicated server
+# Dedicated server (retired)
+
+Online races are now ad-hoc: players host on their own headsets and the relay
+in `adhoc/` lists the races and carries the traffic. See `adhoc/README.md`.
+What follows is the old dedicated server, kept for reference; it uses the same
+UDP port as the relay, so do not run both on one machine.
+
 
     ./setup-linux-server.sh /path/to/speed-dreams-code   # build + prepare
     ./configure-race.py --track jarama --laps 3 --bots 8 # pick the race
