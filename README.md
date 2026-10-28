@@ -5,6 +5,8 @@
 Speed Dreams VR 0.9.3-beta
 ========================
 
+**Download, install guide, controls and pictures: [portroyale.online/speeddreams.html](https://portroyale.online/speeddreams.html)**
+
 [![Sponsor](https://img.shields.io/badge/Sponsor-SgtBilko76-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/SgtBilko76)
 
 
