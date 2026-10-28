@@ -49,6 +49,8 @@ you want; the whole set is about 5.4 GB.
 Controls
 --------
 
+![Speed Dreams VR controller mapping](docs/controls.webp)
+
     Right trigger        throttle          Left trigger      brake
     Left stick           steer             Left stick click  reverse gear
     Right grip           shift up          Left grip         shift down
